@@ -4,7 +4,6 @@ import replace from '@rollup/plugin-replace';
 import json from '@rollup/plugin-json';
 import babel from 'rollup-plugin-babel';
 import { terser } from "rollup-plugin-terser";
-import builtins from 'rollup-plugin-node-builtins';
 
 const BUILD_ENV = JSON.stringify(process.env.NODE_ENV || 'development');
 const devBuild = process.env.NODE_ENV === 'development';
@@ -24,7 +23,6 @@ function buildConfig(inputFile) {
     const runtimeHelpers = true;
 
     const plugins = [
-        builtins(),
         resolve(),
         commonjs(),
         babel({ extensions, runtimeHelpers }),
