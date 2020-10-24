@@ -124,7 +124,7 @@ function onexecuteStartChat(properties: SingleRecord, configuration: SingleRecor
 
                 var obj = JSON.parse(xhr.responseText);
                 postResult({
-                    "outputText": JSON.stringify(obj),
+                    "outputText": obj.messages[0].message,
                     "userID": userID
                 });
                 resolve();
