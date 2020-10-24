@@ -18,7 +18,7 @@ ondescribe = async function ({ }): Promise<void> {
         objects: {
             "message": {
                 displayName: "Message",
-                description: "Represents a text reply",
+                description: "Represent a text reply",
                 properties: {
                     "inputText": {
                         displayName: "Input Text",
