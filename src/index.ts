@@ -91,7 +91,7 @@ function onexecutePostText(properties: SingleRecord, configuration: SingleRecord
 
                 var obj = JSON.parse(xhr.responseText);
                 postResult({
-                    "outputText": obj.message,
+                    "outputText": obj.messages[0].message,
                 });
                 resolve();
             } catch (e) {
@@ -124,7 +124,7 @@ function onexecuteStartChat(properties: SingleRecord, configuration: SingleRecor
 
                 var obj = JSON.parse(xhr.responseText);
                 postResult({
-                    "outputText": obj.message,
+                    "outputText": obj.messages[0].message,
                     "userID": userID
                 });
                 resolve();
