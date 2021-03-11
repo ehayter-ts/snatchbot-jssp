@@ -4,13 +4,7 @@ metadata = {
     systemName: "SnatchBot_ChatBot",
     displayName: "SnatchBot ChatBot",
     description: "SnatchBot ChatBot",
-    configuration: {
-        "BotURL": {
-            displayName: "Bot URL",
-            type: "string",
-            value: "https://account.snatchbot.me/channels/api/api/id138553/app1/aps9725afca-a9f2-439c-80be-80f6b22cb4d2"
-        }
-    }
+    configuration: {}
 };
 
 ondescribe = async function ({ }): Promise<void> {
@@ -20,6 +14,10 @@ ondescribe = async function ({ }): Promise<void> {
                 displayName: "Message",
                 description: "Represent a text reply",
                 properties: {
+                    "botURL": {
+                        displayName: "Bot URL",
+                        type: "string"
+                    },
                     "inputText": {
                         displayName: "Input Text",
                         type: "string"
@@ -37,19 +35,19 @@ ondescribe = async function ({ }): Promise<void> {
                     "postText": {
                         displayName: "Post Text",
                         type: "execute",
-                        inputs: ["inputText", "userID"],
+                        inputs: ["botURL", "inputText", "userID"],
                         outputs: ["outputText"]
                     },
                     "startChat": {
                         displayName: "Start Chat",
                         type: "execute",
-                        inputs: [],
+                        inputs: ["botURL"],
                         outputs: ["userID", "outputText"]
                     },
                     "restartChat": {
                         displayName: "Restart Chat",
                         type: "execute",
-                        inputs: [],
+                        inputs: ["botURL"],
                         outputs: ["userID", "outputText"]
                     }
                 }
@@ -81,7 +79,7 @@ function onexecutePostText(properties: SingleRecord, configuration: SingleRecord
             'message': properties["inputText"].toString()
         };
 
-        var postURL = `${configuration["BotURL"]}?user_id=${properties["userID"]}`;
+        var postURL = `${properties["botURL"]}?user_id=${properties["userID"]}`;
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
@@ -114,7 +112,7 @@ function onexecuteStartChat(properties: SingleRecord, configuration: SingleRecor
 
         var userID = `guest_${Date.now()}`;
 
-        var postURL = `${configuration["BotURL"]}?user_id=${userID}`;
+        var postURL = `${properties["botURL"]}?user_id=${userID}`;
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
