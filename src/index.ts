@@ -24,7 +24,7 @@ ondescribe = async function ({ }): Promise<void> {
                     },
                     "outputText": {
                         displayName: "Output Text",
-                        type: "string"
+                        type: "extendedString"
                     },
                     "userID": {
                         displayName: "User ID",
